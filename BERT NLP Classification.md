@@ -37,12 +37,12 @@
 ```
 output:
 ```
-	                                           text	  pos	neg
-0	Donald Trump just couldn t wish all Americans ...	 1	 0
-1	House Intelligence Committee Chairman Devin Nu...	 1	 0
-2	On Friday, it was revealed that former Milwauk...	 1   0	   
-3	On Christmas day, Donald Trump announced that ...	 1	 0
-4	Pope Francis used his annual Christmas Day mes...	 1   0
+	                                           text	pos neg
+0	Donald Trump just couldn t wish all Americans ... 1 0
+1	House Intelligence Committee Chairman Devin Nu... 1 0
+2	On Friday, it was revealed that former Milwauk... 1 0	   
+3	On Christmas day, Donald Trump announced that ... 1 0
+4	Pope Francis used his annual Christmas Day mes... 1 0
 ...
 44898 rows × 3 columns
 ```
