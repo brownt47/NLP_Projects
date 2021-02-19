@@ -3,7 +3,7 @@ BERT classification exercise using a fake news dataset posted on kaggle here: li
 
 
 ##Import the libraries
-'''python
+'''
 
 !pip3 install ktrain
 
@@ -15,14 +15,14 @@ import ktrain
 from ktrain import text 
 '''
 
-'''python
+'''
 ## Preprocessing the data
-'''python
+'''
 FakeNews = pd.read_csv('Fake.csv')
 RealNews = pd.read_csv('True.csv')
 '''
 ## Encoding the data for BERT
-'''python
+'''
 FakeNews['pos'] = 1
 FakeNews['neg'] = 0
 RealNews['pos'] = 0
@@ -30,7 +30,7 @@ RealNews['neg'] = 1
 '''
 
 ## Combining the datasets
-'''python
+'''
 dataset = pd.concat([FakeNews, RealNews])
 dataset = dataset[['text','pos','neg']]
 print(dataset)
@@ -38,7 +38,7 @@ print(dataset)
 ##Preparing dataset preproc for BERT
 
 ###Creating the training and test sets
-'''python
+'''
 (x_train, y_train), (x_test, y_test), preproc = text.texts_from_df(dataset, 'text',
                                                                      label_columns = ['pos', 'neg'],
                                                                      maxlen = 500,
@@ -46,13 +46,13 @@ print(dataset)
                                                                      preprocess_mode = 'bert')
 '''
 ##Building the BERT Model
-'''python
+'''
 model = text.text_classifier(name = 'bert',
                              train_data = (x_train, y_train),
                              preproc = preproc)
 '''
 ##Training teh BERT Model
-'''python
+'''
  learner = ktrain.get_learner(model = model, 
                              train_data = (x_train, y_train),
                              val_data = (x_test, y_test),
