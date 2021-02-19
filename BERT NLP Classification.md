@@ -62,7 +62,7 @@ output:
                                train_data = (x_train, y_train),
                                preproc = preproc)
 ```
-## Training teh BERT Model
+## Training the BERT Model
 ```
    learner = ktrain.get_learner(model = model, 
                                train_data = (x_train, y_train),
@@ -73,7 +73,8 @@ output:
                        epochs = 1)
 ```
 ## Results
+```
 begin training using onecycle policy with max lr of 2e-05...
 6735/6735 [==============================] - 7117s 1s/step - loss: 0.0636 - accuracy: 0.9811 - val_loss: 0.0019 - val_accuracy: 0.9996
 <tensorflow.python.keras.callbacks.History at 0x7f4ddd9efe80>
-                     
+```                     
