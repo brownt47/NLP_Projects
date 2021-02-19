@@ -5,61 +5,61 @@ BERT classification exercise using a fake news dataset posted on kaggle here: li
 ##Import the libraries
 '''
 
-!pip3 install ktrain
+  !pip3 install ktrain
 
-import os.path 
-import numpy as np
-import pandas as pd
-import tensorflow as tf
-import ktrain
-from ktrain import text 
+  import os.path 
+  import numpy as np
+  import pandas as pd
+  import tensorflow as tf
+  import ktrain
+  from ktrain import text 
 '''
 
 '''
 ## Preprocessing the data
 '''
-FakeNews = pd.read_csv('Fake.csv')
-RealNews = pd.read_csv('True.csv')
+  FakeNews = pd.read_csv('Fake.csv')
+  RealNews = pd.read_csv('True.csv')
 '''
 ## Encoding the data for BERT
 '''
-FakeNews['pos'] = 1
-FakeNews['neg'] = 0
-RealNews['pos'] = 0
-RealNews['neg'] = 1
+  FakeNews['pos'] = 1
+  FakeNews['neg'] = 0
+  RealNews['pos'] = 0
+  RealNews['neg'] = 1
 '''
 
 ## Combining the datasets
 '''
-dataset = pd.concat([FakeNews, RealNews])
-dataset = dataset[['text','pos','neg']]
-print(dataset)
+  dataset = pd.concat([FakeNews, RealNews])
+  dataset = dataset[['text','pos','neg']]
+  print(dataset)
 '''
 ##Preparing dataset preproc for BERT
 
 ###Creating the training and test sets
 '''
-(x_train, y_train), (x_test, y_test), preproc = text.texts_from_df(dataset, 'text',
-                                                                     label_columns = ['pos', 'neg'],
-                                                                     maxlen = 500,
-                                                                     ngram_range = 1,
-                                                                     preprocess_mode = 'bert')
+  (x_train, y_train), (x_test, y_test), preproc = text.texts_from_df(dataset, 'text',
+                                                                       label_columns = ['pos', 'neg'],
+                                                                       maxlen = 500,
+                                                                       ngram_range = 1,
+                                                                       preprocess_mode = 'bert')
 '''
 ##Building the BERT Model
 '''
-model = text.text_classifier(name = 'bert',
-                             train_data = (x_train, y_train),
-                             preproc = preproc)
+  model = text.text_classifier(name = 'bert',
+                               train_data = (x_train, y_train),
+                               preproc = preproc)
 '''
 ##Training teh BERT Model
 '''
- learner = ktrain.get_learner(model = model, 
-                             train_data = (x_train, y_train),
-                             val_data = (x_test, y_test),
-                             batch_size = 6)
-                             
-learner.fit_onecycle(lr = 2e-5,
-                     epochs = 1)
+   learner = ktrain.get_learner(model = model, 
+                               train_data = (x_train, y_train),
+                               val_data = (x_test, y_test),
+                               batch_size = 6)
+
+  learner.fit_onecycle(lr = 2e-5,
+                       epochs = 1)
 '''
 ##Results
 begin training using onecycle policy with max lr of 2e-05...
